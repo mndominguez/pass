@@ -5,7 +5,7 @@ import (
 	"github.com/openalpr/openalpr/src/bindings/go/openalpr"
 	"fmt"
 	"bytes"
-	"github.com/mndominguez/pass/src/api/logger"
+	"github.com/matiasdominguez/pass/src/api/logger"
 )
 
 var instance *openalpr.Alpr

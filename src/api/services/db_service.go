@@ -2,7 +2,7 @@ package services
 
 import (
 	"github.com/go-pg/pg"
-	"github.com/mndominguez/pass/src/api/domain"
+	"github.com/matiasdominguez/pass/src/api/domain"
 )
 
 func StartModel() {

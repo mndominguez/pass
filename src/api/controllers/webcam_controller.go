@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"fmt"
 	"github.com/lazywei/go-opencv/opencv"
-	"github.com/mndominguez/pass/src/api/services"
+	"github.com/matiasdominguez/pass/src/api/services"
 )
 
 const boundary = "informs"

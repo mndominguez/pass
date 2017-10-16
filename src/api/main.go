@@ -1,6 +1,6 @@
 package main
 
-import "github.com/mndominguez/pass/src/api/app"
+import "github.com/matiasdominguez/pass/src/api/app"
 
 func main() {
 	app.StartApp()

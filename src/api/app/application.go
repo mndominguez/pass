@@ -2,8 +2,8 @@ package app
 
 import (
 	"github.com/gin-gonic/gin"
-	log "github.com/mndominguez/pass/src/api/logger"
-	"github.com/mndominguez/pass/src/api/services"
+	log "github.com/matiasdominguez/pass/src/api/logger"
+	"github.com/matiasdominguez/pass/src/api/services"
 )
 
 var (

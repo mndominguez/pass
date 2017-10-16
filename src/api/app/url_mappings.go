@@ -1,7 +1,7 @@
 package app
 
 import (
-	webcamController "github.com/mndominguez/pass/src/api/controllers"
+	webcamController "github.com/matiasdominguez/pass/src/api/controllers"
 )
 
 func mapUrlsToControllers() {
