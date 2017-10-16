@@ -3,15 +3,30 @@ package services
 import (
 	"github.com/go-pg/pg"
 	"github.com/matiasdominguez/pass/src/api/domain"
+	"sync"
 )
 
+var dbInstance *pg.DB
+var dbOnce sync.Once
+
+func GetDBInstance() *pg.DB {
+	dbOnce.Do(func() {
+		dbInstance = pg.Connect(&pg.Options{
+			User: "mdominguez",
+			Database: "pass",
+		})
+	})
+	return dbInstance
+}
+
+/*
 func StartModel() {
 	db := pg.Connect(&pg.Options{
 		User: "mdominguez",
 		Database: "pass",
 	})
 
-	err := createSchema(db)
+	/*err := createSchema(db)
 	if err != nil {
 		panic(err)
 	}
@@ -63,7 +78,8 @@ func StartModel() {
 	if err != nil {
 		panic(err)
 	}
-}
+}*/
+
 
 func createSchema(db *pg.DB) error {
 	for _, model := range []interface{}{&domain.Event{}, &domain.Resident{}, &domain.Car{}, &domain.User{}} {
