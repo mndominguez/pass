@@ -23,7 +23,7 @@ type Event struct {
 
 type Resident struct {
 	Id int
-	Cars []*Car
+	Cars []Car
 	Name string
 	Address string
 }
@@ -37,9 +37,9 @@ func (resident Resident) toJson() (string, error) {
 }
 
 type Car struct {
-	Id int
-	Plate string
+	Plate string `sql:",pk"`
 	Model string
+	Residents []Resident
 }
 
 func (car Car) toJson() (string, error) {

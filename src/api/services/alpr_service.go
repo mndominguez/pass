@@ -6,6 +6,9 @@ import (
 	"fmt"
 	"bytes"
 	"github.com/matiasdominguez/pass/src/api/logger"
+	"image/png"
+	//"github.com/mercadolibre/fraud-locations_loaders/jobs/services"
+	"github.com/lazywei/go-opencv/opencv"
 )
 
 var instance *openalpr.Alpr
@@ -20,7 +23,27 @@ func GetInstance() *openalpr.Alpr {
 	return instance
 }
 
+func AlprStream() {
+	cap := opencv.NewCameraCapture(0)
+	cap.SetProperty(opencv.CV_CAP_PROP_FRAME_WIDTH, 300)
+	cap.SetProperty(opencv.CV_CAP_PROP_FRAME_HEIGHT, 300)
+	defer cap.Release()
+	for {
+		if cap.GrabFrame() {
+			img := cap.RetrieveFrame(1)
+			buff := new(bytes.Buffer)
+			err := png.Encode(buff, img.ToImage())
+			if err != nil {
+				fmt.Println(err)
+			}
+			Recognize(buff)
+		}
+	}
+}
+
 func Recognize(buff *bytes.Buffer) {
+	// TODO REMOVE HARDCODING
+	go CreateEventIfCarExists("FMU526")
 	resultFromFilePath, err := GetInstance().RecognizeByBlob(buff.Bytes())
 	if err != nil {
 		fmt.Println(err)
