@@ -3,6 +3,7 @@ package app
 import (
 	"github.com/gin-gonic/gin"
 	log "github.com/matiasdominguez/pass/src/api/logger"
+	//"github.com/matiasdominguez/pass/src/api/services"
 	"github.com/matiasdominguez/pass/src/api/services"
 )
 
@@ -12,9 +13,11 @@ var (
 
 
 func StartApp() {
+	services.StartModel()
+	services.AlprStream()
 	configureRouter()
 	mapUrlsToControllers()
-	services.StartModel()
+	//services.StartModel()
 	Router.Run(":8080")
 }
 
