@@ -14,11 +14,11 @@ var (
 
 func StartApp() {
 	services.StartModel()
-	services.AlprStream()
+	//services.AlprStream()
 	configureRouter()
 	mapUrlsToControllers()
 	//services.StartModel()
-	Router.Run(":8080")
+	Router.Run(":8888")
 }
 
 func configureRouter() {
