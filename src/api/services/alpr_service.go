@@ -7,9 +7,7 @@ import (
 	"bytes"
 	"github.com/matiasdominguez/pass/src/api/logger"
 	"image/png"
-	//"github.com/mercadolibre/fraud-locations_loaders/jobs/services"
 	"github.com/lazywei/go-opencv/opencv"
-	//"github.com/matiasdominguez/pass/src/api/domain"
 )
 
 var instance *openalpr.Alpr

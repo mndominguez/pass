@@ -5,6 +5,7 @@ import (
 	"github.com/matiasdominguez/pass/src/api/logger"
 	"fmt"
 	"time"
+//	"github.com/go-pg/pg/orm"
 )
 
 func CreateEventIfCarExists(plate string) {
@@ -15,11 +16,11 @@ func CreateEventIfCarExists(plate string) {
 	}
 	if err == nil {
 		// Get owner
-		fmt.Println(car.Residents[0].Id)
+		fmt.Println(car.ResidentId)
 		// Create event and insert it
 		event := &domain.Event{
-			Car: &car,
-			Resident: &car.Residents[0],
+			CarID: car.Id,
+			ResidentID : car.ResidentId,
 			CreationDate: time.Now(),
 		}
 		err := InsertEvent(event)
@@ -47,6 +48,16 @@ func FindEventsByCar(car domain.Car) {
 	if err != nil {
 		panic(err)
 	}
-	logger.Info(fmt.Sprintf("%+v\n", events[0].Car.Plate))
+	logger.Info(fmt.Sprintf("%+v\n", events[0].CarID))
 	logger.Info(fmt.Sprintf("%+v\n", events))
 }
+/*
+func FindEventsByResidentId(id int) ([]domain.Event, error) {
+	db := GetDBInstance()
+	var events []domain.Event
+	//err := db.Model(&residents).Order("id asc").Select()
+	err := db.Model(&events).Where().Select()
+	fmt.Println(err)
+	fmt.Println(residents)
+	return residents, nil
+}*/

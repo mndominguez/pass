@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"fmt"
 	"github.com/lazywei/go-opencv/opencv"
-	"github.com/matiasdominguez/pass/src/api/services"
+//	"github.com/matiasdominguez/pass/src/api/services"
 )
 
 const boundary = "informs"
@@ -27,11 +27,12 @@ func StreamWebcam(c *gin.Context) {
 				fmt.Println(err)
 			}
 			c.Writer.Write([]byte("Content-Type: image/jpeg\r\n"))
+			c.Writer.Write([]byte("Connection: keep-alive\r\n"))
 			c.Writer.Write([]byte("Content-Length: " + string(reader.Len()) + "\r\n\r\n"))
 			c.Writer.Write(buff.Bytes())
 			c.Writer.Write([]byte("\r\n"))
 			c.Writer.Write([]byte("--informs\r\n"))
-			services.Recognize(buff)
+			//services.Recognize(buff)
 		}
 	}
 }

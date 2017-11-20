@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/go-pg/pg"
 	"github.com/matiasdominguez/pass/src/api/domain"
 	"sync"
+	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
 )
 
@@ -61,7 +61,6 @@ func StartModel() {
 	}
 
 	resident1 := &domain.Resident{
-		Cars: []domain.Car{*car1},
 		Name: "Matias Dominguez",
 		Address: "Brandsen 123",
 	}
@@ -71,7 +70,6 @@ func StartModel() {
 	}
 
 	resident2 := &domain.Resident{
-		Cars: []domain.Car{*car2},
 		Name: "Pity Luz",
 		Address: "Brandsen 123",
 	}
@@ -80,8 +78,14 @@ func StartModel() {
 		panic(err)
 	}
 
-	car1.Residents = []domain.Resident{*resident1}
+	car1.ResidentId = resident1.Id
 	err = db.Update(car1)
+	if err != nil {
+		panic(err)
+	}
+
+	car2.ResidentId = resident2.Id
+	err = db.Update(car2)
 	if err != nil {
 		panic(err)
 	}
