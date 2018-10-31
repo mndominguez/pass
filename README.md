@@ -1,1 +1,1 @@
-// TODO complete README
+This project has been deprecated and probably will never be finished.
